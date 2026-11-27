@@ -1,18 +1,12 @@
-// All data access goes through this file.
-// - No VITE_API_URL  -> demo mode: data lives in the browser (localStorage), seeded with sample records.
-// - VITE_API_URL set -> real mode: calls the REST API built by the backend teammate.
-//
-// REST contract (per table name, e.g. customers, menu_items, orders):
-//   GET    {URL}/{table}        -> [ {...}, ... ]
-//   POST   {URL}/{table}        -> created row
-//   PUT    {URL}/{table}/{id}   -> updated row
-//   DELETE {URL}/{table}/{id}  -> { success: true }
-// Errors: respond with a non-2xx status and JSON { "error": "message to show the user" }.
 import { ENTITIES } from './config';
 import { buildSeed } from './seed';
 
 const BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+
 export const DEMO = !BASE;
+
+console.log('API URL:', BASE);
+console.log('DEMO MODE:', DEMO);
 
 /* ---------- real backend ---------- */
 async function http(path, options) {

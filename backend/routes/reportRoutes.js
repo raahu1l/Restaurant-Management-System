@@ -1,0 +1,10 @@
+const express = require('express');
+const c = require('../controllers/reportController');
+const router = express.Router();
+router.get('/dashboard', c.dashboard);
+router.get('/sales-by-day', c.salesByDay);
+router.get('/top-items', c.topItems);
+router.get('/staff-performance', c.staffPerformance);
+router.get('/payment-methods', c.paymentMethods);
+router.get('/outstanding-bills', c.outstandingBills);
+module.exports = router;
